@@ -1,5 +1,19 @@
+"""
+    AirfoilDefinitions
+
+AirfoilDefinitions.jl defines 2D chord-normalized airfoil geometries using
+parametric airfoil definitions.
+"""
 module AirfoilDefinitions
 
-# Write your package code here.
+import DelimitedFiles
+
+include("utils.jl")
+include("interface.jl")
+include("definitions/file.jl")
+include("definitions/naca4.jl")
+
+export UnitAirfoil, NACA4, AirfoilFile
+export coordinates
 
 end
