@@ -15,6 +15,13 @@ AirfoilDefinitions.jl is a Julia package for generating 2D chord-normalized
 airfoil geometries using parametric airfoil definitions. It focuses on airfoil
 definitions rather than airfoil manipulation and geometry discretization.
 
+It currently supports the following parameterization methods:
+
+- `AirfoilFile`: read airfoil coordinates from file.
+- `UIUC`: dictionary of more than 1600 airfoils from the UIUC database.
+- `NACA4`: four-digit NACA series, covering both open and closed trailing edge
+  formulations.
+
 ## License
 
 AirfoilDefinitions.jl is released under the terms of the MIT license. See

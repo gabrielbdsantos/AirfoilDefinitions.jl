@@ -13,7 +13,7 @@ include("interface.jl")
 include("definitions/file.jl")
 include("definitions/naca4.jl")
 
-export UnitAirfoil, NACA4, AirfoilFile
+export UnitAirfoil, AirfoilFile, UIUC, NACA4
 export coordinates
 
 end
