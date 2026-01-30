@@ -11,18 +11,62 @@
 
 </div>
 
-AirfoilDefinitions.jl is a Julia package for generating 2D chord-normalized
-airfoil geometries using parametric airfoil definitions. It focuses on airfoil
-definitions rather than airfoil manipulation and geometry discretization.
+AirfoilDefinitions.jl is a Julia package for generating two-dimensional,
+chord-normalized airfoil geometries using parametric airfoil definitions.
 
-It currently supports the following parameterization methods:
+It supports the following parameterization methods:
 
-- `AirfoilFile`: read airfoil coordinates from file.
-- `UIUC`: dictionary of more than 1600 airfoils from the UIUC database.
-- `NACA4`: four-digit NACA series, covering both open and closed trailing edge
-  formulations.
+- [x] `AirfoilFile`
+- [ ] `BezierCurves`
+- [ ] `CST`
+- [ ] `HicksHenne`
+- [x] `NACA4`
+- [ ] `NACA5`
+- [ ] `NACA6`
+- [ ] `PARSEC`
+
+## Install
+
+AirfoilDefinitions.jl is not yet a registered Julia package. So to install it,
+
+1. Download [Julia](https://julialang.org/downloads/) version 1.10 or later.
+1. Launch Julia and type
+
+```julia-repl
+julia> import Pkg
+julia> Pkg.add("https://github.com/gabrielbdsantos/AirfoilDefinitions.jl")
+```
+
+## Quick start
+
+```julia
+using AirfoilDefinitions
+
+# Step 1. Select an airfoil generation method.
+airfoil = NACA4("0012"; open_trailing_edge = true)
+
+# Step 2. Generate the coordinates
+coords = coordinates(airfoil)
+```
+
+## Coordinate convention
+
+All airfoils are defined in a two-dimensional Cartesian coordinate system with
+the following conventions:
+
+- Chord length is normalized to unity.
+- The leading edge is located at `x = 0`, and the trailing edge at `x = 1`.
+- Airfoil surface coordinates are ordered clockwise, starting from the upper
+  trailing edge.
+
+## Contributing
+
+Contributions are welcome, particularly new airfoil definition methods and
+improvements to existing implementations. Please open an issue to discuss
+substantial changes or new parameterization methods before submitting a pull
+request.
 
 ## License
 
-AirfoilDefinitions.jl is released under the terms of the MIT license. See
-[License](./LICENSE) for further details.
+AirfoilDefinitions.jl is released under the terms of the MIT license. See the
+[License](./LICENSE) file for further details.
