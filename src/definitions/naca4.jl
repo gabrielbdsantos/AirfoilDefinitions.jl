@@ -7,7 +7,7 @@ Represents a classical NACA 4-digit airfoil parameterized by camber, camber
 position, and thickness. This type encodes *how* the airfoil is defined, not
 its discretized geometry.
 
-## Arguments
+# Arguments
 
 - `max_camber::Tm`: Maximum camber as a fraction of the chord.
 - `max_camber_position::Tp`: Chordwise position of maximum camber.
@@ -26,7 +26,7 @@ struct NACA4{Tm, Tp, Tt} <: AbstractAirfoilDefinition
 
     Construct a NACA 4-digit airfoil from numerical parameters.
 
-    ## Arguments
+    # Arguments
 
     - `m`: Maximum camber as a fraction of the chord.
     - `p`: Chordwise position of maximum camber.
@@ -48,7 +48,7 @@ struct NACA4{Tm, Tp, Tt} <: AbstractAirfoilDefinition
     The string must contain exactly four digits, following the standard NACA
     convention (e.g. `"2412"`).
 
-    ## Arguments
+    # Arguments
 
     - `s`: Four-digit NACA airfoil designation.
     - `open_trailing_edge`: Whether to use the open trailing-edge formulation.
@@ -73,7 +73,7 @@ end
 
 Generate airfoil coordinates for a NACA 4-digit airfoil.
 
-## Keyword arguments
+# Keyword arguments
 
 - `num_points`: total number of points used to discretize the airfoil.
 
@@ -130,7 +130,7 @@ Validate NACA 4-digit airfoil parameters.
 Ensures that camber, camber position, and thickness parameters fall within
 physically meaningful bounds and are mutually consistent.
 
-## Arguments
+# Arguments
 
 - `m`: Maximum camber as a fraction of the chord.
 - `p`: Chordwise position of maximum camber.
@@ -165,7 +165,7 @@ end
 
 Return the half-thickness distribution of a NACA 4-digit airfoil.
 
-## Arguments
+# Arguments
 
 - `x`: Chordwise coordinate in `[0, 1]`.
 - `t`: Maximum thickness as a fraction of the chord.
@@ -189,7 +189,7 @@ end
 
 Return the camberline ordinate at chordwise location `x`.
 
-## Arguments
+# Arguments
 
 - `x`: Chordwise coordinate in `[0, 1]`.
 - `m`: Maximum camber as a fraction of the chord.
@@ -209,7 +209,7 @@ end
 
 Return the derivative of the camberline at chordwise location `x`.
 
-## Arguments
+# Arguments
 
 - `x`: Chordwise coordinate in `[0, 1]`.
 - `m`: Maximum camber as a fraction of the chord.

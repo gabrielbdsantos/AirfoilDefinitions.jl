@@ -10,7 +10,7 @@ follows the steps:
 2. Scale the coordinates so that the chord length is unity.
 3. Rotate the coordinates so that the trailing edge lies at `(1, 0)`.
 
-## Arguments
+# Arguments
 
 - `coordinates<:AbstractMatrix`: Two-column matrix of airfoil coordinates
   `(x, y)` ordered in Selig format, with the first and last rows corresponding
