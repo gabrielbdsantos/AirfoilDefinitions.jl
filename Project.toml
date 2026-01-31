@@ -1,7 +1,7 @@
 name = "AirfoilDefinitions"
 uuid = "687bab45-8d53-4002-b6e1-68ad3e5a170a"
 authors = ["Gabriel B. Santos <gabriel.bertacco@unesp.br>"]
-version = "0.1.0"
+version = "0.1.1"
 
 [deps]
 DelimitedFiles = "8bb1440f-4735-579b-a4ab-409b98df4dab"
