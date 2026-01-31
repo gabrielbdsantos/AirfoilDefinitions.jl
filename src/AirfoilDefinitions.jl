@@ -6,7 +6,9 @@ parametric airfoil definitions.
 """
 module AirfoilDefinitions
 
-export UnitAirfoil, AirfoilFile, UIUC, NACA4
+export AbstractAirfoilDefinition
+export UnitAirfoil, AirfoilFile, NACA4
+# export UIUC
 export coordinates
 
 import DelimitedFiles
@@ -14,6 +16,7 @@ import DelimitedFiles
 include("utils.jl")
 include("interface.jl")
 include("definitions/file.jl")
+# include("definitions/database.jl")
 include("definitions/naca4.jl")
 
 end
