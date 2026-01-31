@@ -11,8 +11,9 @@ abstract type AbstractAirfoilDefinition end
 
 Canonical representation of a unit-chord airfoil.
 
-`UnitAirfoil` stores airfoil geometry in a normalized reference frame (unit chord,
-fixed orientation, Selig ordering), together with the method that produced it.
+`UnitAirfoil` stores airfoil geometry in a normalized reference frame (unit
+chord, fixed orientation, Selig ordering), together with the method that
+produced it.
 
 # Fields
 
@@ -30,9 +31,9 @@ end
 
 Return the airfoil coordinates defined by `method`.
 
-Concrete subtypes of [`AbstractAirfoilDefinition`](@ref) are expected to implement
-this interface. Keyword arguments may be used to control some options of the
-method.
+Concrete subtypes of [`AbstractAirfoilDefinition`](@ref) are expected to
+implement this interface. Keyword arguments may be used to control some options
+of the method.
 """
 function coordinates(method::AbstractAirfoilDefinition; kwargs...) end
 
@@ -40,7 +41,7 @@ function coordinates(method::AbstractAirfoilDefinition; kwargs...) end
 """
     coordinates(foil::UnitAirfoil; kwargs...)
 
-Return the coordinate representation of a `UnitAirfoil`.
+Return the coordinate representation of a [`UnitAirfoil`](@ref).
 
 Keyword arguments are accepted for interface consistency but are not used by
 this method.

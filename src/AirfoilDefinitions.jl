@@ -1,8 +1,6 @@
 """
-    AirfoilDefinitions
-
-AirfoilDefinitions.jl defines 2D chord-normalized airfoil geometries using
-parametric airfoil definitions.
+`AirfoilDefinitions.jl` -- a Julia package for defining two-dimensional
+chord-normalized airfoil geometries using parametric airfoil definitions.
 """
 module AirfoilDefinitions
 
