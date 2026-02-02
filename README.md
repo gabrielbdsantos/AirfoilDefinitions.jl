@@ -17,7 +17,6 @@ chord-normalized airfoil geometries using parametric airfoil definitions.
 It supports the following parameterization methods:
 
 - [x] `AirfoilFile`
-- [ ] `BezierCurves`
 - [x] `CST`
 - [ ] `HicksHenne`
 - [x] `NACA4`
@@ -57,7 +56,21 @@ the following conventions:
 - Chord length is normalized to unity.
 - The leading edge is located at `x = 0`, and the trailing edge at `x = 1`.
 - Airfoil surface coordinates are ordered clockwise, starting from the upper
-  trailing edge.
+  trailing edge (Selig ordering).
+
+<div align="center">
+<img
+    src="./docs/src/assets/selig-ordering.png"
+    alt="Selig ordering"
+    style="width: 20vw; min-width: 250px;"
+    />
+
+<br/>
+<p align="center">
+    Coordinates arranged according to the Selig ordering.
+    Source: <https://doi.org/10.2514/1.J059317>.
+</p>
+</div>
 
 ## Contributing
 
