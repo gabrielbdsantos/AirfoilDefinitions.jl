@@ -18,7 +18,7 @@ It supports the following parameterization methods:
 
 - [x] `AirfoilFile`
 - [ ] `BezierCurves`
-- [ ] `CST`
+- [x] `CST`
 - [ ] `HicksHenne`
 - [x] `NACA4`
 - [ ] `NACA5`

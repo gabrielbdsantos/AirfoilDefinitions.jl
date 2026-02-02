@@ -6,12 +6,12 @@ chord-normalized airfoil geometries using parametric airfoil definitions.
 It supports the following parameterization methods:
 
 - [`AirfoilFile`](@ref)
+- [`CST`](@ref)
 - [`NACA4`](@ref)
 
 The following methods are planned:
 
 - `BezierCurves`
-- `CST`
 - `HicksHenne`
 - `NACA5`
 - `NACA6`
