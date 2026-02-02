@@ -5,7 +5,9 @@ version = "0.1.1"
 
 [deps]
 DelimitedFiles = "8bb1440f-4735-579b-a4ab-409b98df4dab"
+LsqFit = "2fda8390-95c7-5789-9bda-21331edee243"
 
 [compat]
 DelimitedFiles = "1.9.1"
+LsqFit = "0.15.1"
 julia = "1.10"

@@ -51,3 +51,26 @@ function normalize!(coordinates)
 
     return nothing
 end
+
+
+"""
+    split_upper_lower_surfaces(coordinates)
+
+Split coordinates into upper and lower surfaces.
+
+# Arguments
+
+- `coordinates::AbstractMatrix`: Matrix of airfoil coordinates with columns
+  representing the x and y values.
+
+# Returns
+
+- `(upper, lower)`: Two matrices containing the coordinates of the upper
+  and lower surfaces, respectively.
+"""
+@inline function split_upper_lower_surfaces(coordinates)
+    _, n = findmin(@view coordinates[:, 1])
+    offset = isodd(size(coordinates, 1)) ? 0 : 1
+
+    return coordinates[1:n, :], coordinates[(n + offset):end, :]
+end

@@ -1,10 +1,12 @@
 """
     AirfoilFile <: AbstractAirfoilDefinition
 
-Airfoil definition based on coordinates stored in an external file.
+Generic airfoil definition that reads the coordinates stored in an external
+file.
 
-The file is expected to contain two columns representing `(x, y)` coordinates.
-The geometry is read and normalized when coordinates are requested.
+The file is expected to contain two columns representing `(x, y)` coordinates,
+ordered according to the Selig format. The geometry is read and normalized when
+coordinates are requested.
 """
 struct AirfoilFile <: AbstractAirfoilDefinition
     filename::String
@@ -18,24 +20,25 @@ Read and return normalized airfoil coordinates from a file.
 
 The coordinates are normalized in place to a canonical reference frame (unit
 chord, leading edge at the origin, Selig ordering).
+
+# Arguments
+
+- `method::AirfoilFile`: Generic airfoil definition stored in an external file.
 """
 function coordinates(method::AirfoilFile; kwargs...)
     c = DelimitedFiles.readdlm(method.filename)
     normalize!(c)
-
     return c
 end
 
 
 """
-    UnitAirfoil(foil::AirfoilFile; kwargs...)
+    UnitAirfoil(method::AirfoilFile; kwargs...)
 
-Construct a [`UnitAirfoil`](@ref) from the coordinates in a file.
-
-Coordinates are read from file and normalized before being stored in the
-resulting `UnitAirfoil`.
+Construct a [`UnitAirfoil`](@ref) by reading and normalazing the coordinates in
+a file.
 """
-function UnitAirfoil(foil::AirfoilFile; kwargs...)
-    coords = coordinates(foil; kwargs...)
-    return UnitAirfoil{typeof(foil), typeof(coords)}(foil, coords)
+function UnitAirfoil(method::AirfoilFile; kwargs...)
+    coords = coordinates(method; kwargs...)
+    return UnitAirfoil{typeof(method), typeof(coords)}(method, coords)
 end

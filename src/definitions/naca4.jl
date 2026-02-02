@@ -31,11 +31,14 @@ struct NACA4{Tm, Tp, Tt} <: AbstractAirfoilDefinition
     - `m`: Maximum camber as a fraction of the chord.
     - `p`: Chordwise position of maximum camber.
     - `t`: Maximum thickness as a fraction of the chord.
+
+    # Keyword arguments
+
     - `open_trailing_edge`: Whether to use the open trailing-edge formulation.
 
     An `ArgumentError` is thrown if the parameters are invalid or inconsistent.
     """
-    function NACA4(m::Tm, p::Tp, t::Tt, open_trailing_edge = true) where {Tm, Tp, Tt}
+    function NACA4(m::Tm, p::Tp, t::Tt; open_trailing_edge = true) where {Tm, Tp, Tt}
         naca4_validate_params(m, p, t)
         return new{Tm, Tp, Tt}(m, p, t, open_trailing_edge)
     end
@@ -51,49 +54,58 @@ struct NACA4{Tm, Tp, Tt} <: AbstractAirfoilDefinition
     # Arguments
 
     - `s`: Four-digit NACA airfoil designation.
+
+    # Keyword arguments
+
     - `open_trailing_edge`: Whether to use the open trailing-edge formulation.
 
     An `ArgumentError` is thrown if the string does not contain exactly four
     digits.
     """
-    function NACA4(s::String, open_trailing_edge = true)
+    function NACA4(s::String; open_trailing_edge = true)
         length(s) == 4 || throw(ArgumentError("expected 4 digits. Got '$(s)'."))
 
         m = parse(Int, s[1]) / 100
         p = parse(Int, s[2]) / 10
         t = parse(Int, s[3:end]) / 100
 
-        return NACA4(m, p, t, open_trailing_edge)
+        return NACA4(m, p, t; open_trailing_edge)
     end
 end
 
 
 """
-    coordinates(foil::NACA4; num_points=199, kwargs...)
+    coordinates(method::NACA4; num_points=199, kwargs...)
 
 Generate airfoil coordinates for a NACA 4-digit airfoil.
 
+# Arguments
+
+- `method::NACA4`: four-digit NACA airfoil definition.
+
 # Keyword arguments
 
-- `num_points`: total number of points used to discretize the airfoil.
+- `num_points::Int`: Total number of points used to discretize the airfoil.
 
-The resulting coordinates are defined on a unit chord, following the Selig
-ordering.
+# Returns
+
+- `::Matrix`: Airfoil coordinates on a unit chord, ordered according
+  to the Selig convention.
 """
-function coordinates(foil::NACA4; num_points = 199, kwargs...)
+function coordinates(method::NACA4; num_points = 199, kwargs...)
     points_per_side = ceil(typeof(num_points), num_points / 2)
     x = (1 .- cos.(LinRange(0, pi, points_per_side))) / 2
 
-    half_thickness = naca4_half_thickness.(x, foil.max_thickness, foil.open_trailing_edge)
+    half_thickness = naca4_half_thickness.(x, method.max_thickness, method.open_trailing_edge)
 
-    if foil.max_camber == 0 || foil.max_camber_position == 0
+    if method.max_camber == 0 || method.max_camber_position == 0
         x_upper = x
         x_lower = x
         y_upper = half_thickness
         y_lower = -half_thickness
     else
-        y_camber = naca4_camberline.(x, foil.max_camber, foil.max_camber_position)
-        θ = atan.(naca4_derivative.(x, foil.max_camber, foil.max_camber_position))
+        y_camber = naca4_camberline.(x, method.max_camber, method.max_camber_position)
+        θ = atan.(naca4_derivative.(x, method.max_camber, method.max_camber_position))
 
         x_upper = @. x - half_thickness * sin(θ)
         x_lower = @. x + half_thickness * sin(θ)
@@ -111,14 +123,14 @@ end
 
 
 """
-    UnitAirfoil(foil::NACA4; num_points = 199, kwargs...)
+    UnitAirfoil(method::NACA4; num_points = 199, kwargs...)
 
 Construct a [`UnitAirfoil`](@ref) from a NACA 4-digit airfoil definition.
 Coordinates are generated using [`coordinates(::NACA4)`](@ref).
 """
-function UnitAirfoil(foil::NACA4; num_points = 199, kwargs...)
-    coords = coordinates(foil; num_points, kwargs...)
-    return UnitAirfoil{typeof(foil), typeof(coords)}(foil, coords)
+function UnitAirfoil(method::NACA4; num_points = 199, kwargs...)
+    coords = coordinates(method; num_points, kwargs...)
+    return UnitAirfoil{typeof(method), typeof(coords)}(method, coords)
 end
 
 
