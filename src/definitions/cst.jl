@@ -65,7 +65,7 @@ function CST(coordinates; num_upper_weights = 8, num_lower_weights = 8, N1 = 0.5
     trailing_edge_thickness = y_upper[1] - y_lower[end]
 
     fit = LsqFit.curve_fit(
-        (x, p) -> __coordinates(x, p, length(x_upper), num_upper_weights, N1, N2),
+        (x, p) -> cst_y_coordinates(x, p, length(x_upper), num_upper_weights, N1, N2),
         [x_upper; x_lower],
         [y_upper; y_lower],
         [ones(num_upper_weights + num_lower_weights + 1); trailing_edge_thickness],
@@ -78,7 +78,7 @@ function CST(coordinates; num_upper_weights = 8, num_lower_weights = 8, N1 = 0.5
         offset = 0
 
         fit = LsqFit.curve_fit(
-            (x, p) -> __coordinates(x, [p; 0], length(x_upper), num_upper_weights, N1, N2),
+            (x, p) -> cst_y_coordinates(x, [p; 0], length(x_upper), num_upper_weights, N1, N2),
             [x_upper; x_lower],
             [y_upper; y_lower],
             ones(num_upper_weights + num_lower_weights + 1),
@@ -246,7 +246,7 @@ function cst(x, coefficients, leading_edge_weight, trailing_edge_thickness, N1, 
 end
 
 
-function __coordinates(x, parameters, num_upper_points, num_weights_upper, N1, N2)
+function cst_y_coordinates(x, parameters, num_upper_points, num_weights_upper, N1, N2)
     weights..., leading_edge_weight, trailing_edge_gap = parameters
 
     weights_upper = weights[1:num_weights_upper]

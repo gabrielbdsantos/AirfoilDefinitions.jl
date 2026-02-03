@@ -68,7 +68,8 @@ the following conventions:
 <br/>
 <p align="center">
     Coordinates arranged according to the Selig ordering.
-    Source: <https://doi.org/10.2514/1.J059317>.
+    Source:
+    <a href="https://doi.org/10.2514/1.J059317">https://doi.org/10.2514/1.J059317</a>.
 </p>
 </div>
 

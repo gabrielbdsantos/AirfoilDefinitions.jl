@@ -15,6 +15,6 @@ include("definitions/cst.jl")
 
 export AbstractAirfoilDefinition
 export UnitAirfoil, AirfoilFile, NACA4, CST
-export coordinates
+export coordinates, normalize, normalize!
 
 end
