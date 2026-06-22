@@ -58,20 +58,14 @@ the following conventions:
 - Airfoil surface coordinates are ordered clockwise, starting from the upper
   trailing edge (Selig ordering).
 
-<div align="center">
-<img
-    src="./docs/src/assets/selig-ordering.png"
-    alt="Selig ordering"
-    style="width: 20vw; min-width: 250px;"
-    />
-
+<p align="center">
+<img src="./docs/src/assets/selig-ordering.png" alt="Selig ordering" style="width: 350px;" />
 <br/>
 <p align="center">
     Coordinates arranged according to the Selig ordering.
-    Source:
-    <a href="https://doi.org/10.2514/1.J059317">https://doi.org/10.2514/1.J059317</a>.
+    Source: <a href="https://doi.org/10.2514/1.J059317">https://doi.org/10.2514/1.J059317</a>.
 </p>
-</div>
+</p>
 
 ## Contributing
 
